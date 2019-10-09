@@ -38,6 +38,8 @@ class SPStorkPresentationController: UIPresentationController, UIGestureRecogniz
     weak var storkDelegate: SPStorkControllerDelegate?
     weak var confirmDelegate: SPStorkControllerConfirmDelegate?
     
+    var presentCompletion: ((Bool) -> ())? = nil
+    var dismissCompletion: ((Bool) -> ())? = nil
     
     var pan: UIPanGestureRecognizer?
     var tap: UITapGestureRecognizer?
@@ -242,6 +244,7 @@ class SPStorkPresentationController: UIPresentationController, UIGestureRecogniz
             self.pan!.cancelsTouchesInView = false
             self.presentedViewController.view.addGestureRecognizer(self.pan!)
         }
+        presentCompletion?(completed)
     }
     
     override func dismissalTransitionWillBegin() {
@@ -322,6 +325,8 @@ class SPStorkPresentationController: UIPresentationController, UIGestureRecogniz
         let offscreenFrame = CGRect(x: 0, y: containerView.bounds.height, width: containerView.bounds.width, height: containerView.bounds.height)
         presentedViewController.view.frame = offscreenFrame
         presentedViewController.view.transform = .identity
+        
+        dismissCompletion?(completed)
     }
 }
 
