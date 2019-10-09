@@ -38,6 +38,7 @@ class SPStorkPresentationController: UIPresentationController, UIGestureRecogniz
     weak var storkDelegate: SPStorkControllerDelegate?
     weak var confirmDelegate: SPStorkControllerConfirmDelegate?
     
+    
     var pan: UIPanGestureRecognizer?
     var tap: UITapGestureRecognizer?
     
