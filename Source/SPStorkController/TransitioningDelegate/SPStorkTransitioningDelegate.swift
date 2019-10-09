@@ -37,14 +37,8 @@ public final class SPStorkTransitioningDelegate: NSObject, UIViewControllerTrans
     public weak var storkDelegate: SPStorkControllerDelegate? = nil
     public weak var confirmDelegate: SPStorkControllerConfirmDelegate? = nil
     
-    private let presentCompletion: ((Bool) -> ())?
-    private let dismissCompletion: ((Bool) -> ())?
-    
-    @objc public init(presentCompletion: ((Bool) -> ())? = nil,
-                      dismissCompletion: ((Bool) -> ())? = nil) {
-        self.presentCompletion = presentCompletion
-        self.dismissCompletion = dismissCompletion
-    }
+    public var presentCompletion: ((Bool) -> ())? = nil
+    public var dismissCompletion: ((Bool) -> ())? = nil
     
     public func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         let controller = SPStorkPresentationController(presentedViewController: presented, presenting: presenting)
